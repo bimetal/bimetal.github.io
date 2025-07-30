@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ads Report Auto Generation</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f7f7f7; margin: 0; padding: 0; }
+    .container { max-width: 600px; margin: 40px auto; background: #fff; padding: 32px 24px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    h1 { color: #333; }
+    label { display: block; margin-top: 18px; font-weight: bold; }
+    input, select { width: 100%; padding: 8px; margin-top: 6px; border: 1px solid #ccc; border-radius: 4px; }
+    button { margin-top: 24px; padding: 12px 24px; background: #0078d7; color: #fff; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; }
+    button:disabled { background: #aaa; }
+    .report { margin-top: 32px; background: #f0f4f8; padding: 18px; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Ads Report Auto Generation</h1>
+    <form id="reportForm" onsubmit="generateReport(event)">
+      <label for="adPlatform">Ad Platform</label>
+      <select id="adPlatform" required>
+        <option value="">Select platform</option>
+        <option>Google Ads</option>
+        <option>Facebook Ads</option>
+        <option>Instagram Ads</option>
+        <option>Twitter Ads</option>
+      </select>
+      <label for="dateFrom">Date From</label>
+      <input type="date" id="dateFrom" required>
+      <label for="dateTo">Date To</label>
+      <input type="date" id="dateTo" required>
+      <button type="submit">Generate Report</button>
+    </form>
+    <div id="reportOutput" class="report" style="display:none;"></div>
+  </div>
+  <script>
+    function generateReport(event) {
+      event.preventDefault();
+      const platform = document.getElementById('adPlatform').value;
+      const from = document.getElementById('dateFrom').value;
+      const to = document.getElementById('dateTo').value;
+      if (!platform || !from || !to) return;
+      const report = `\n<strong>Platform:</strong> ${platform}<br>\n<strong>Date Range:</strong> ${from} to ${to}<br>\n<strong>Impressions:</strong> 12,345<br>\n<strong>Clicks:</strong> 678<br>\n<strong>CTR:</strong> 5.49%<br>\n<strong>Cost:</strong> $123.45<br>\n<strong>Conversions:</strong> 34<br>\n<strong>Conversion Rate:</strong> 5.01%`;
+      const output = document.getElementById('reportOutput');
+      output.innerHTML = `<h2>Mock Report</h2>${report}`;
+      output.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
